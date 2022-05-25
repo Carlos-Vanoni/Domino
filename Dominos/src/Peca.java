@@ -1,11 +1,13 @@
-public class Peça {
+public class Peca {
 
     private int up;
     private int down;
+    private int dif;
 
-    public Peça(int up, int down) {
+    public Peca(int up, int down, int dif) {
         this.up = up;
         this.down = down;
+        this.dif = dif;
     }
 
     public int getUp() {
@@ -24,11 +26,21 @@ public class Peça {
         this.down = down;
     }
 
+    public int getDif() {
+        return dif;
+    }
+
     @Override
     public String toString() {
-        return "Peça{" +
-                "up=" + up +
-                ", down=" + down +
-                '}';
+        return "Peça{" + "up=" + up +
+                ", down=" + down + '}' + "Diferença: " + dif;
     }
+
+    public void reverse(){
+        int temp = up;
+        up = down;
+        down = temp;
+    }
+
+
 }

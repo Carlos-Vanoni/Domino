@@ -4,9 +4,9 @@ public class Main {
 
         Manager d = new Manager();
 
-        d.lendo("in.txt");
-
-
-
+        d.lendo("in1");
+        d.sort();
+        d.print();
+        d.somar();
     }
 }

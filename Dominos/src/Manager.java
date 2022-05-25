@@ -24,13 +24,13 @@ public class Manager {
 
     public void lendo(String nome) {
         try {
-            FileReader fis = new FileReader("c:\\users\\carlo\\" + nome);
+            FileReader fis = new FileReader(nome);
             BufferedReader ler = new BufferedReader(fis);
 
             String linha = "";
             linha = ler.readLine();
-            List<Peça> tabuleiro = new ArrayList<>();
-            List<Peça> tabuleiroAux = new ArrayList<>();
+            List<Peca> tabuleiro = new ArrayList<>();
+            List<Peca> tabuleiroAux = new ArrayList<>();
 
 
             while (!Objects.equals(linha, "0")) {
@@ -49,15 +49,48 @@ public class Manager {
                 String[] values = linha.split(" ");
                 int up = Integer.parseInt(values[0]);
                 int down = Integer.parseInt(values[1]);
-                tabuleiro.add(new Peça(up, down));
+                int dif = up - down;
+                boolean added = false;
+                tabuleiro.add(new Peca(up,down,dif));
+//                if (tabuleiro.size() == 0){
+//                    tabuleiro.add(new Peca(up, down, dif));
+//                }
+//                else {
+//                    for (int i = 0; i < tabuleiro.size(); i++){
+//                        if (tabuleiro.get(i).getDif() < dif){
+//                            tabuleiro.add(i + 1, new Peca(up, down, dif));
+//                            break;
+//                        }
+//                    }
+//                }
             }
 
             ler.close();
         }catch (FileNotFoundException ex) {
-            System.out.println("Arquivo N�o Encontrado");
+            System.out.println("Arquivo Nao Encontrado");
         }catch (IOException ex) {
             System.out.println("IOE funcionando");
         }
 
+    }
+
+    public void print(){
+        for (Domino d: boardList){
+            for (Peca p: d.getTabuleiro()){
+                System.out.println(p.toString());
+            }
+        }
+    }
+
+    public void sort(){
+        for (Domino d: boardList){
+            d.sort();
+        }
+    }
+
+    public void somar(){
+        for (Domino d: boardList){
+            d.somar();
+        }
     }
 }
