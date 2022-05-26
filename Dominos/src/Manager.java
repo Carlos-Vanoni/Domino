@@ -50,8 +50,12 @@ public class Manager {
                 int up = Integer.parseInt(values[0]);
                 int down = Integer.parseInt(values[1]);
                 int dif = up - down;
+                Peca p = new Peca(up,down,dif);
+                if (dif < 0){
+                    p.reverse();
+                }
                 boolean added = false;
-                tabuleiro.add(new Peca(up,down,dif));
+                tabuleiro.add(p);
 //                if (tabuleiro.size() == 0){
 //                    tabuleiro.add(new Peca(up, down, dif));
 //                }

@@ -40,6 +40,7 @@ public class Peca {
         int temp = up;
         up = down;
         down = temp;
+        dif = up - down;
     }
 
 

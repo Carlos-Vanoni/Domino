@@ -4,7 +4,7 @@ public class Main {
 
         Manager d = new Manager();
 
-        d.lendo("in1");
+        d.lendo("in2");
         d.sort();
         d.print();
         d.somar();
