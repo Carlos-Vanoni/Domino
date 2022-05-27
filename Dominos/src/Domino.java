@@ -20,34 +20,9 @@ public class Domino {
     }
 
     public void saveTabuleiro(List<Peca> tabuleiro) {
-        List<Peca> tabuleiroSaved = new ArrayList<>();
-        tabuleiroSaved.addAll(tabuleiro);
-        this.tabuleiro = tabuleiroSaved;
+        this.tabuleiro = new ArrayList<>(tabuleiro);
     }
 
-    public void ler(String nome) {
-        try {
-            FileReader arq = new FileReader(nome);
-            BufferedReader ler = new BufferedReader(arq);
-
-            String conteudo = "";
-            String linha = "";
-            linha = ler.readLine();
-
-            while (linha != null) {
-                String[] values = linha.split("");
-                int up = Integer.parseInt(values[0]);
-                int down = Integer.parseInt(values[1]);
-                Peca peca = new Peca(up, down, up - down);
-                tabuleiro.add(peca);
-                peca.toString();
-            }
-
-            ler.close();
-        } catch (IOException e) {
-            System.out.println("erro");
-        }
-    }
 
     public void somar(){
         List<Peca> match = new ArrayList<Peca>();
