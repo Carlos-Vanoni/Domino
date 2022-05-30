@@ -29,8 +29,8 @@ public class Manager {
 
             String linha = "";
             linha = ler.readLine();
-            List<Peca> tabuleiro = new ArrayList<>();
-            List<Peca> tabuleiroAux = new ArrayList<>();
+            ArrayList<Peca> tabuleiro = new ArrayList<>();
+            ArrayList<Peca> tabuleiroAux = new ArrayList<>();
 
 
             while (!Objects.equals(linha, "0")) {
@@ -50,23 +50,8 @@ public class Manager {
                 int up = Integer.parseInt(values[0]);
                 int down = Integer.parseInt(values[1]);
                 int dif = up - down;
-                Peca p = new Peca(up,down,dif);
-                if (dif < 0){
-                    p.reverse();
-                }
-                boolean added = false;
+                Peca p = new Peca(up,down);
                 tabuleiro.add(p);
-//                if (tabuleiro.size() == 0){
-//                    tabuleiro.add(new Peca(up, down, dif));
-//                }
-//                else {
-//                    for (int i = 0; i < tabuleiro.size(); i++){
-//                        if (tabuleiro.get(i).getDif() < dif){
-//                            tabuleiro.add(i + 1, new Peca(up, down, dif));
-//                            break;
-//                        }
-//                    }
-//                }
             }
 
             ler.close();

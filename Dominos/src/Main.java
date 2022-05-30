@@ -4,9 +4,10 @@ public class Main {
 
         Manager d = new Manager();
 
-        d.lendo("in2");
-        d.sort();
-        d.print();
+        d.lendo("in3");
+        //d.sort();
+        //d.print();
         d.somar();
     }
 }
+

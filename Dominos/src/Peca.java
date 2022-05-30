@@ -2,12 +2,10 @@ public class Peca {
 
     private int up;
     private int down;
-    private int dif;
 
-    public Peca(int up, int down, int dif) {
+    public Peca(int up, int down) {
         this.up = up;
         this.down = down;
-        this.dif = dif;
     }
 
     public int getUp() {
@@ -27,21 +25,36 @@ public class Peca {
     }
 
     public int getDif() {
-        return dif;
+        return up - down;
     }
 
     @Override
     public String toString() {
         return "Peça{" + "up=" + up +
-                ", down=" + down + '}' + "Diferença: " + dif;
+                ", down=" + down + '}' + "Diferença: " + (up - down);
     }
 
     public void reverse(){
         int temp = up;
         up = down;
         down = temp;
-        dif = up - down;
     }
 
+    public void add(Peca p){
+        up += p.getUp();
+        down += p.getDown();
+    }
 
+    @Override
+    public Peca clone(){
+        return new Peca(up, down);
+    }
+
+    public int getMean(){
+        return (up + down) / 2;
+    }
+
+    public int getTotal(){
+        return up + down;
+    }
 }
