@@ -4,8 +4,6 @@ public class Solution {
     private ArrayList<Peca> pecas;
     private Peca removed;
     private int iterator;
-    private int dif  = 0;
-    private int sum = 0;
 
     public Solution() {
         this.pecas = new ArrayList<Peca>();
@@ -15,47 +13,56 @@ public class Solution {
     public Solution(ArrayList<Peca> pecas) {
         this.pecas = pecas;
         this.removed = null;
-        for (Peca peca : pecas) {
-            this.dif += peca.getDif();
-            this.sum += peca.getUp();
-        }
     }
 
     public Solution(ArrayList<Peca> pecas, Peca removed, int iterator) {
         this.pecas = (ArrayList<Peca>) pecas.clone();
         this.removed = removed;
         this.iterator = iterator;
-        for (Peca peca : pecas) {
-            this.dif += peca.getDif();
-            this.sum += peca.getUp();
-        }
     }
 
     public void add(Peca peca){
         pecas.add(peca);
-        this.dif += peca.getDif();
-        this.sum += peca.getUp();
     }
 
     public boolean remove(){
+        ArrayList<Peca> candidatos = new ArrayList<Peca>();
         for (int i = 0; i < pecas.size() && removed == null; i ++){
             if (pecas.get(i).getDif() == getDif()){
-                removed = pecas.get(i).clone();
-                if (i >= iterator) {
-                    iterator --;
-                }
-                pecas.remove(pecas.get(i));
-                this.dif -= removed.getDif();
-                this.sum -= removed.getUp();
-                return true;
+                candidatos.add(pecas.get(i));
             }
+        }
+        if (candidatos.size() > 0) {
+            candidatos = sort(candidatos);
+            removed = candidatos.get(0).clone();
+            pecas.remove(candidatos.get(0));
+
+            int position = pecas.indexOf(candidatos.get(0));
+            if (position >= iterator) {
+                iterator--;
+            }
+            return true;
         }
         return false;
     }
 
+    public ArrayList<Peca> sort(ArrayList<Peca> pecas){
+        ArrayList<Peca> sorted = new ArrayList<Peca>();
+
+        while (pecas.size() > 0){
+            Peca menor = pecas.get(0);
+            for (Peca p: pecas){
+                if (p.getDif() < menor.getDif()){
+                    menor = p;
+                }
+            }
+            sorted.add(menor);
+            pecas.remove(menor);
+        }
+        return sorted;
+    }
+
     public void reverse(){
-        this.sum += pecas.get(iterator).getDown() - pecas.get(iterator).getUp();
-        this.dif -= pecas.get(iterator).getDif();
         pecas.get(iterator).reverse();
     }
 
@@ -65,10 +72,6 @@ public class Solution {
 
     public void addIterator(){
         iterator ++;
-    }
-
-    public void setIterator(int iterator) {
-        this.iterator = iterator;
     }
 
     public Solution clone(){
@@ -85,30 +88,14 @@ public class Solution {
         return pecas;
     }
 
-    public void setPecas(ArrayList<Peca> pecas) {
-        this.pecas = pecas;
-    }
-
     public Peca getRemoved() {
         return removed;
-    }
-
-    public void setRemoved(Peca removed) {
-        this.removed = removed;
     }
 
     public int getSum() {
         int sum = 0;
         for (Peca peca : pecas) {
             sum += peca.getUp();
-        }
-        return sum;
-    }
-
-    public int getSumTotal() {
-        int sum = 0;
-        for (Peca peca : pecas) {
-            sum += peca.getTotal();
         }
         return sum;
     }
@@ -121,20 +108,23 @@ public class Solution {
         return dif;
     }
 
+    public int getDif(int iterator) {
+        int dif = 0;
+        for (int i = iterator; i < getPecas().size(); i++) {
+            dif += pecas.get(i).getDif();
+        }
+        return dif;
+    }
+
     public String toString(){
-        return "Dif: " + getDif() + " " + "Sum: " + getSum() + " " + pecas.toString();
-    }
-
-    public int getSum(int iterator) {
+        String rmv = "NULL";
         if (removed != null) {
-            iterator--;
+            rmv = removed.toString();
         }
-        int sum = 0;
-        for (int i = 0; i < iterator; i++){
-            sum += pecas.get(iterator).getUp();
-        }
-        return sum;
+
+        return "Dif: " + getDif() + " " + "Sum: " + getSum()
+                + " Iterator: " + iterator + " "
+                + " Removed: " + rmv + " "
+                + " " + pecas.toString();
     }
-
-
 }

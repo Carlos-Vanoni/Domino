@@ -59,10 +59,6 @@ public class Domino {
 
         sort();
 
-        ArrayList<Solution> solucoes = new ArrayList<Solution>();
-
-
-
         ArrayList<Peca> novoTabuleiro = new ArrayList<Peca>();
         for (Peca peca : tabuleiro) {
             novoTabuleiro.add(peca.clone());
@@ -83,88 +79,6 @@ public class Domino {
         } else {
             System.out.println("impossível");
         }
-
-        /*
-
-        List<Peca> resultado = new ArrayList<>();
-
-        int dif = 0;
-        for (Peca peca : tabuleiro) {
-            if (peca.getDif() < 0) {
-                peca.reverse();
-            }
-            dif += peca.getDif();
-        }
-
-        boolean oddArray = false;
-        if (dif % 2 != 0) {
-            oddArray = true;
-            dif --;
-        }
-        int middle = dif / 2;
-
-
-        boolean changed = true;
-        while (dif > middle && tabuleiro.size() > 0 && changed) {
-            Peca maiorDif = new Peca(0, 0);
-            changed = false;
-            //se ordenar por diferenca n precisa desse loop
-            for (Peca peca : tabuleiro) {
-                if (peca.getDif() > maiorDif.getDif() && dif - peca.getDif() >= middle){
-                    maiorDif = peca;
-                    changed = true;
-                }
-            }
-            if (changed){
-                maiorDif.reverse();
-                dif += maiorDif.getDif();
-                resultado.add(maiorDif);
-                tabuleiro.remove(maiorDif);
-            }
-        }
-
-        if (oddArray) {
-            dif ++;
-        }
-
-
-        int remove = dif - middle;
-
-        Peca removed = null;
-
-        if (remove != 0) {
-            for (int i = 0; i < tabuleiro.size() && (removed == null); i ++) {
-                if (tabuleiro.get(i).getDif() == remove){
-                    removed = tabuleiro.get(i);
-                    tabuleiro.remove(tabuleiro.get(i));
-                    dif -= removed.getDif();
-                    i --;
-                }
-            }
-        }
-
-        for (Peca peca : tabuleiro){
-            resultado.add(peca);
-        }
-
-        int sum = 0;
-        for (Peca p : resultado) {
-            sum += p.getUp();
-        }
-
-        remove = dif - middle;
-
-        if (remove == 0) {
-            System.out.print(sum);
-            if (removed != null){
-                System.out.println(" descartado o dominó " + removed.getUp() + " " + removed.getDown());
-            } else {
-                System.out.println(" nenhum dominó descartado");
-            }
-        } else {
-            System.out.println("impossível");
-        }
-        */
     }
 
     public Solution resolver(Solution solucao, Solution melhorSolucao){
@@ -183,12 +97,15 @@ public class Domino {
             }
             return melhorSolucao;
         }
-        if (melhorSolucao.getSum() != 0 && solucao.getSum(solucao.getIterator()) <= melhorSolucao.getSum(solucao.getIterator())){
+        if (solucao.getDif() / 2 > solucao.getDif(solucao.getIterator())){
             return melhorSolucao;
         }
+        if (melhorSolucao.getSum() > 0) {
+            if (solucao.getDif(solucao.getIterator()) > melhorSolucao.getDif(solucao.getIterator())){
+                return melhorSolucao;
+            }
+        }
 
-        //tentar fazer os caminhos como variaveis na classe solution, depois pra voltar é só chamar a referencia anterior
-        //ai fazer pesquisa por amplitude
         Solution novaSolucao1 = solucao.clone();
         novaSolucao1.addIterator();
         melhorSolucao = resolver(novaSolucao1, melhorSolucao);

@@ -5,8 +5,6 @@ public class Main {
         Manager d = new Manager();
 
         d.lendo("in3");
-        //d.sort();
-        //d.print();
         d.somar();
     }
 }
