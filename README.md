@@ -21,27 +21,27 @@ by: Carlos Vanoni e Eduardo Bernardi
 
 *A aplicação irá ler arquivos com esse seguinte formato:*
 
-[Número de peças que terá na próxima pilha].</p>
-<p>[valor esquerdo  peça1] [valor direito  peça1].</p>
-<p>[valor esquerdo  peça2] [valor direito  peça2].</p>
-<p>[Número de peças que terá na próxima pilha].</p>
-<p>[valor esquerdo  peça3] [valor direito  peça3].</p>
-<p>[valor esquerdo  peça4] [valor direito  peça4].</p>
-<p>[valor esquerdo  peça5] [valor direito  peça5].</p>
+[Número de peças que terá na próxima pilha]</p>
+<p>[valor esquerdo  peça1] [valor direito  peça1]</p>
+<p>[valor esquerdo  peça2] [valor direito  peça2]</p>
+<p>[Número de peças que terá na próxima pilha]</p>
+<p>[valor esquerdo  peça3] [valor direito  peça3]</p>
+<p>[valor esquerdo  peça4] [valor direito  peça4]</p>
+<p>[valor esquerdo  peça5] [valor direito  peça5]</p>
 <p>0
 
 *Sempre usar `0` na ultima linha para finalizar o arquivo*
 
 Exemplo de dados no arquivo:
 
-<p>2.</p>
-<p>8 1.</p>
-<p>9 4.</p>
-<p>3.</p>
-<p>6 3.</p>
-<p>1 2.</p>
-<p>3 1.</p>
-<p>0.</p>
+<p>2</p>
+<p>8 1</p>
+<p>9 4</p>
+<p>3</p>
+<p>6 3</p>
+<p>1 2</p>
+<p>3 1</p>
+<p>0</p>
 
 
 ## Como Executar a Aplicação
