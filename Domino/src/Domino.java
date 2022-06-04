@@ -82,14 +82,15 @@ public class Domino {
     }
 
     public Solution resolver(Solution solucao, Solution melhorSolucao){
-        if (solucao.getDif() < 0){
+        if (solucao.getIterator() == solucao.getPecas().size() && solucao.getDif() != 0) {
             if (!solucao.remove()){
                 return melhorSolucao;
             }
         }
-        if (solucao.getIterator() == solucao.getPecas().size() && solucao.getDif() != 0) {
-            solucao.remove();
-            return melhorSolucao;
+        if (solucao.getDif() < 0){
+            if (!solucao.remove()){
+                return melhorSolucao;
+            }
         }
         if (solucao.getDif() == 0) {
             if (solucao.getSum() > melhorSolucao.getSum()) {
