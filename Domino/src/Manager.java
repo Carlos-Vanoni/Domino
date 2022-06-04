@@ -1,4 +1,7 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -19,14 +22,15 @@ public class Manager {
         this.boardList = boardList;
     }
 
-    public void lendo(String user,String nome) {
+    public void lendo(String user, String nome) {
         try {
-            FileReader fis = new FileReader(nome);
+            FileReader fis = new FileReader("C:\\Users\\" + user + "\\" + nome);
             BufferedReader ler = new BufferedReader(fis);
+
             String linha = "";
             linha = ler.readLine();
-            List<Peca> tabuleiro = new ArrayList<>();
-            List<Peca> tabuleiroAux = new ArrayList<>();
+            ArrayList<Peca> tabuleiro = new ArrayList<>();
+            ArrayList<Peca> tabuleiroAux = new ArrayList<>();
 
 
             while (!Objects.equals(linha, "0")) {
@@ -46,23 +50,8 @@ public class Manager {
                 int up = Integer.parseInt(values[0]);
                 int down = Integer.parseInt(values[1]);
                 int dif = up - down;
-                Peca p = new Peca(up,down,dif);
-                if (dif < 0){
-                    p.reverse();
-                }
-                boolean added = false;
+                Peca p = new Peca(up,down);
                 tabuleiro.add(p);
-//                if (tabuleiro.size() == 0){
-//                    tabuleiro.add(new Peca(up, down, dif));
-//                }
-//                else {
-//                    for (int i = 0; i < tabuleiro.size(); i++){
-//                        if (tabuleiro.get(i).getDif() < dif){
-//                            tabuleiro.add(i + 1, new Peca(up, down, dif));
-//                            break;
-//                        }
-//                    }
-//                }
             }
 
             ler.close();
@@ -72,22 +61,6 @@ public class Manager {
             System.out.println("IOE funcionando");
         }
 
-    }
-
-    public void grava(String usuario, String nomeArq, String result) {
-        File f = new File("c:\\users\\" + usuario + "\\" + nomeArq + ".txt");
-
-        try {
-            FileOutputStream fos = new FileOutputStream(f);
-            PrintWriter pw = new PrintWriter(fos);
-
-            pw.println(result);
-
-            System.out.println("Salvo!");
-            pw.close();
-        } catch (IOException ex) {
-            System.out.println("Erro ao salvar");
-        }
     }
 
     public void print(){
@@ -108,5 +81,9 @@ public class Manager {
         for (Domino d: boardList){
             d.somar();
         }
+    }
+
+    public void clear() {
+        this.boardList.clear();
     }
 }
