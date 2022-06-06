@@ -2,6 +2,16 @@ public class Main {
 
     public static void main(String[] args) {
 
+
+        /*
+         * Trabalho do leitor de pilhas de dominos
+         * por Carlos Vanoni e Eduardo Bernardi
+         * 
+         * para mais informacoes da aplicacao 
+         * acesse o nosso repositorio no github: https://github.com/Carlos-Vanoni/Domino
+         * e leia o arquivo README.md
+         */
+
         Manager manager = new Manager();
 
         InterfaceUser userCommands = new InterfaceUser();
